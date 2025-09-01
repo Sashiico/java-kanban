@@ -1,3 +1,4 @@
+import java.util.Objects;
 public class Task {
     private int id;
     private String title;
@@ -47,6 +48,10 @@ public class Task {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return id == task.id;
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
     @Override
