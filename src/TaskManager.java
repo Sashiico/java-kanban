@@ -10,7 +10,7 @@ public class TaskManager {
 
     //Task-----------------------------------
     public void createTask(Task task) {
-        tasks.get(nextId++);
+        task.setId(nextId++);
         tasks.put(task.getId(), task);
     }
 

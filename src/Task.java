@@ -1,8 +1,8 @@
 public class Task {
-    protected int id;
-    protected String title;
-    protected String description;
-    protected Status status;
+    private int id;
+    private String title;
+    private String description;
+    private Status status;
 
     public Task(String title, String description) {
         this.title = title;
@@ -40,6 +40,13 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id;
     }
 
     @Override
