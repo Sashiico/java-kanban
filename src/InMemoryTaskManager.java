@@ -6,12 +6,11 @@ public class InMemoryTaskManager implements TaskManager {
     private final HashMap<Integer, Task> tasks = new HashMap<>();
     private HashMap<Integer, Epic> epics = new HashMap<>();
     private HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    private HistoryManager historyManager;
+    private HistoryManager historyManager = Managers.getDefaultHistory();
     private int nextId = 1;
+
     //History--------------------------------
-    public InMemoryTaskManager(HistoryManager historyManager) {
-        this.historyManager = historyManager;
-    }
+
 
     @Override
     public List<Task> getHistory() {
@@ -168,8 +167,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     //Update Epic-----------------------------------
-    @Override
-    public void updateEpicStatus(int epicId) {
+    private void updateEpicStatus(int epicId) {
         Epic epic = epics.get(epicId);
         if (epic == null || epic.getSubtaskIds().isEmpty()) {
             epic.setStatus(Status.NEW);
@@ -195,7 +193,6 @@ public class InMemoryTaskManager implements TaskManager {
         } else {
             epic.setStatus(Status.IN_PROGRESS);
         }
-
     }
 }
 
